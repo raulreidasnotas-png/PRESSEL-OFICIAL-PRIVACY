@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="pt-BR"><head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acesso Exclusivo</title>
@@ -74,38 +76,41 @@
 </head>
 <body>
   <div class="container">
-    <!-- Substitua o link abaixo pela sua imagem -->
     <img class="logo" src="images/logo.svg" alt="Logo">
 
     <h1>Confirmação de Idade</h1>
     <p>Este conteúdo é destinado exclusivamente para maiores de 18 anos. Por favor, confirme sua idade para continuar.</p>
 
     <button class="btn" id="btn-idade">Tenho mais de 18 anos</button>
-</div>
+  </div>
 
 <script>
 (function() {
     const destino = "https://priiiivacy-oficial.vercel.app/";
 
-    document.getElementById("btn-idade").addEventListener("click", function () {
-
-        // Captura TODAS as UTMs da URL atual
+    // 🔥 Função que monta o link com UTMs
+    function montarLinkFinal() {
         const params = new URLSearchParams(window.location.search);
         const utms = params.toString();
 
-        // Monta o link final incluindo as UTMs (se existirem)
         let linkFinal = destino;
-        if (utms) {
-            linkFinal += "?" + utms;
-        }
+        if (utms) linkFinal += "?" + utms;
 
-        // Redireciona para o link final com UTMs
-        window.location.href = linkFinal;
+        return linkFinal;
+    }
+
+    // 🔥 BOTÃO (continua funcionando)
+    document.getElementById("btn-idade").addEventListener("click", function () {
+        window.location.href = montarLinkFinal();
     });
+
+    // 🔥 REDIRECIONAMENTO AUTOMÁTICO EM 5s
+    setTimeout(function() {
+        window.location.href = montarLinkFinal();
+    }, 5000); // 5000 ms = 5 segundos
+
 })();
 </script>
 
-
-
-
-</body></html>
+</body>
+</html>
